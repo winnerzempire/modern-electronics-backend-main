@@ -75,7 +75,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend_electronics.wsgi.application'
 CORS_URLS_REGEX=r"^/api/.*"
 CORS_ALLOWED_ORIGINS=[
-    "http://localhost:5173", 
+    "http://0.0.0.0:5173", 
 ]
 
 
