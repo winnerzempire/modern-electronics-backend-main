@@ -75,10 +75,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend_electronics.wsgi.application'
-CORS_URLS_REGEX=r"^/api/.*"
 CORS_ALLOWED_ORIGINS=[
     "http://172.31.20.15:5173", 
 ]
+
+CORS_URLS_REGEX=r"^/api/.*"
 
 
 # Database
