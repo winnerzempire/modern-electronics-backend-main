@@ -75,7 +75,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend_electronics.wsgi.application'
-CORS_ALLOWED_ORIGINS=[]
+CORS_ALLOWED_ORIGINS=[
+    "https://ec2-54-211-63-31.compute-1.amazonaws.com", 
+]
 
 CORS_URLS_REGEX=r"^/api/.*"
 
