@@ -15,7 +15,15 @@ class CategorySerializer(serializers.ModelSerializer):
       "admin",
       "title"
     )
- 
+
+class CategorySerializer(serializers.ModelSerializer):
+  class Meta:
+    model=Category
+    fields=(
+      "id",
+      "title"
+    )
+
 class ReviewSerializer(serializers.ModelSerializer):
   class Meta:
     model=Reviews
@@ -51,10 +59,6 @@ class ProductSerializer(serializers.ModelSerializer):
       "description",
       "reviews",
       "total_rating",
-      
-
-      
-
     )
 
   def get_reviews(self, obj):

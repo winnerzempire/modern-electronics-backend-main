@@ -1,8 +1,17 @@
 from rest_framework import generics
-from .serializers import ProductSerializer, ReviewSerializer
-from .models import Product, Reviews
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from .models import Product
+from .serializers import ProductSerializer, ReviewSerializer, CategorySerializer
+from .models import Product, Reviews, Category
 from rest_framework import serializers
 from api.mixins import StaffEditorPermissionsMixin
+
+
+class CategoryListCreateView(generics.ListCreateAPIView):
+    queryset=Category.objects.all()
+    serializer_class = CategorySerializer
+category_list_view = CategoryListCreateView.as_view()
 
 class ListAPIView(generics.ListAPIView):
   queryset=Product.objects.all()
@@ -27,3 +36,15 @@ class RetrieveAPIView(StaffEditorPermissionsMixin,
   lookup_field="pk"
 
 product_retrieve_view= RetrieveAPIView.as_view()
+
+
+
+
+
+class ProductListByCategory(generics.ListAPIView):
+    serializer_class = ProductSerializer
+
+    def get_queryset(self):
+        category_id = self.kwargs.get('category_id')  # Get category_id from URL
+        return Product.objects.filter(category_id=category_id)
+
