@@ -57,6 +57,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_ORIGINS = [
     "https://viqtech.co.ke.",
+    "https://www.viqtech.co.ke",
 ]
 
 
