@@ -60,12 +60,23 @@ CORS_ALLOW_ORIGINS = [
     "https://www.viqtech.co.ke",
 ]
 
+# settings.py
 
 CORS_ALLOW_HEADERS = [
+    'Accept',
+    'Accept-Encoding',
     'Authorization',
     'Content-Type',
-    ...
+    'Origin',
+    'User-Agent',
+    'X-CSRFToken',
+    'X-Requested-With',
+    # Add any other headers your API requires
 ]
+
+
+
+
 
 ROOT_URLCONF = 'backend_electronics.urls'
 
