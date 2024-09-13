@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Build paths inside the project like this: BASE_DIR / 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-o7ztw4ih^9mpj7&raimzf^cq!(mjinml@qa#s3mo21fp-8jrm2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['54.211.63.31', 'viqtech.co.ke']
+ALLOWED_HOSTS = ['54.211.63.31', 'viqtech.co.ke','127.0.0.1']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -54,6 +54,10 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True 
+
+CORS_ALLOW_ORIGINS = [
+    "https://viqtech.co.ke.",
+]
 
 
 ROOT_URLCONF = 'backend_electronics.urls'
