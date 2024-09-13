@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-o7ztw4ih^9mpj7&raimzf^cq!(mjinml@qa#s3mo21fp-8jrm2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['viqtech.co.ke', 'www.viqtech.co.ke','127.0.0.1']
+ALLOWED_HOSTS = ['54.211.63.31', 'viqtech.co.ke']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -121,6 +121,9 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+CSRF_TRUSTED_ORIGINS = ['https://viqtech.co.ke', 'http://54.211.63.31']
+
 
 
 # Static files (CSS, JavaScript, Images)
