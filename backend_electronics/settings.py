@@ -61,6 +61,12 @@ CORS_ALLOW_ORIGINS = [
 ]
 
 
+CORS_ALLOW_HEADERS = [
+    'Authorization',
+    'Content-Type',
+    ...
+]
+
 ROOT_URLCONF = 'backend_electronics.urls'
 
 TEMPLATES = [
