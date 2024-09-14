@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .views import CategoryListCreateView, ProductListByCategory, category_list_view,  CategoryListCreateView, product_list_view, review_create_view, product_retrieve_view
 
 
@@ -15,5 +16,7 @@ urlpatterns = [
     path('products/<int:pk>/', product_retrieve_view, name='product-detail'),  # Retrieves a single product by its primary key
     path('reviews/create/', review_create_view, name='review-create'),  # Creates a new review
     path('products/<int:category_id>/', ProductListByCategory.as_view(), name='product-list-by-category'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
 ]
