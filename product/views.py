@@ -1,6 +1,7 @@
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated
 from .models import Product
 from .serializers import ProductSerializer, ReviewSerializer, CategorySerializer
 from .models import Product, Reviews, Category
@@ -11,6 +12,7 @@ from api.mixins import StaffEditorPermissionsMixin
 class CategoryListCreateView(generics.ListCreateAPIView):
     queryset=Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = [IsAuthenticated]
 category_list_view = CategoryListCreateView.as_view()
 
 class ListAPIView(generics.ListAPIView):
