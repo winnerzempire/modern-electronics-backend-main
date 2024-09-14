@@ -3,6 +3,8 @@ from .models import Product, Category, Reviews
 from api.serializers import UserSerializer
 from .validators import unique_validator
 import numpy as np
+from rest_framework.authtoken.models import Token
+
 
 
 class CategorySerializer(serializers.ModelSerializer):

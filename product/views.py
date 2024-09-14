@@ -7,12 +7,13 @@ from .serializers import ProductSerializer, ReviewSerializer, CategorySerializer
 from .models import Product, Reviews, Category
 from rest_framework import serializers
 from api.mixins import StaffEditorPermissionsMixin
+from  rest_framework.authentication import TokenAuthentication
 
 
 class CategoryListCreateView(generics.ListCreateAPIView):
     queryset=Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [IsAuthenticated]
+    authentication_classes = (TokenAuthentication,)
 category_list_view = CategoryListCreateView.as_view()
 
 class ListAPIView(generics.ListAPIView):
