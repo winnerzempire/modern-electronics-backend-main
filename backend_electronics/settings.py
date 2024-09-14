@@ -76,8 +76,6 @@ CORS_ALLOW_HEADERS = [
 
 
 
-
-
 ROOT_URLCONF = 'backend_electronics.urls'
 
 TEMPLATES = [
