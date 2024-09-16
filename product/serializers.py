@@ -3,6 +3,7 @@ from .models import Product, Category, Reviews
 from api.serializers import UserSerializer
 from .validators import unique_validator
 import numpy as np
+from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 
 
@@ -75,5 +76,10 @@ class ProductSerializer(serializers.ModelSerializer):
       item=0
       acc=[i.rating for i in curr if(i.product_id==obj.pk)]
     return np.sum(acc)
+  
+  def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        Token.objects.create(user=user)
+        return user
   
   

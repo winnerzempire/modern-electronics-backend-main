@@ -7,7 +7,8 @@ from .serializers import ProductSerializer, ReviewSerializer, CategorySerializer
 from .models import Product, Reviews, Category
 from rest_framework import serializers
 from api.mixins import StaffEditorPermissionsMixin
-from  rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import TokenAuthentication
+from django.contrib.auth.models import User
 
 
 class CategoryListCreateView(generics.ListCreateAPIView):
