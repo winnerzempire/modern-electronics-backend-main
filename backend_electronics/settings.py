@@ -16,17 +16,11 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-o7ztw4ih^9mpj7&raimzf^cq!(mjinml@qa#s3mo21fp-8jrm2'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,8 +33,7 @@ INSTALLED_APPS = [
     "djoser",
     "api",
     "product",
-    "corsheaders"
-   
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -54,28 +47,22 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True 
-
-CORS_ALLOW_ORIGINS = [
-    "https://viqtech.co.ke.",
+# CORS configuration
+CORS_ALLOWED_ORIGINS = [
+    "https://viqtech.co.ke",
     "https://www.viqtech.co.ke",
 ]
 
-# settings.py
-
 CORS_ALLOW_HEADERS = [
-    'Accept',
-    'Accept-Encoding',
-    'Authorization',
-    'Content-Type',
-    'Origin',
-    'User-Agent',
-    'X-CSRFToken',
-    'X-Requested-With',
-    # Add any other headers your API requires
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'origin',
+    'user-agent',
+    'x-csrf-token',
+    'x-requested-with',
 ]
-
-
 
 ROOT_URLCONF = 'backend_electronics.urls'
 
@@ -97,14 +84,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend_electronics.wsgi.application'
 
-
-
-CORS_URLS_REGEX="^/api/.*"
-
-
 # Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -112,10 +92,7 @@ DATABASES = {
     }
 }
 
-
 # Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -131,30 +108,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 CSRF_TRUSTED_ORIGINS = ['https://viqtech.co.ke', 'http://54.211.63.31']
 
-
-
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
 STATIC_URL = 'static/'
-STATIC_ROOT= os.path.join(BASE_DIR,  "static")
-MEDIA_URL="media/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+MEDIA_URL = "media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
