@@ -19,6 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 SECRET_KEY = 'django-insecure-o7ztw4ih^9mpj7&raimzf^cq!(mjinml@qa#s3mo21fp-8jrm2'
 DEBUG = True
+
 ALLOWED_HOSTS = ['viqtech.co.ke', '54.211.63.31', '127.0.0.1']
 
 
