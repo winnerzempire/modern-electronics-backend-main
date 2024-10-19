@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-o7ztw4ih^9mpj7&raimzf^cq!(mjinml@qa#s3mo21fp-8jrm2'
 DEBUG = True
 
-ALLOWED_HOSTS = ['viqtech.co.ke', '54.211.63.31', '127.0.0.1']
+ALLOWED_HOSTS = ['.viqtech.co.ke', '54.211.63.31', '127.0.0.1']
 
 
 INSTALLED_APPS = [
