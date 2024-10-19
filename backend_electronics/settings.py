@@ -22,7 +22,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['.viqtech.co.ke', '54.211.63.31', '127.0.0.1']
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -116,13 +115,12 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-CSRF_TRUSTED_ORIGINS = CSRF_TRUSTED_ORIGINS = [
+CSRF_TRUSTED_ORIGINS = [
     'https://viqtech.co.ke',
     'http://viqtech.co.ke',   # Add this if requests may come from both protocols
     'http://54.211.63.31',
     'https://54.211.63.31',
 ]
-
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
