@@ -12,7 +12,8 @@ urlpatterns = [
     path("api/products/", include("product.urls")),
     path('auth/', obtain_auth_token),
     
-]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
++static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 
