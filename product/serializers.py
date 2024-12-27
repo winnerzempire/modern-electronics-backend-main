@@ -47,22 +47,16 @@ class ProductSerializer(serializers.ModelSerializer):
     view_name="product-detail",
     lookup_field="pk"
   )
+  shortDiscList = serializers.SerializerMethodField() 
   total_rating=serializers.SerializerMethodField(read_only=True)
   class Meta:
-    model=Product
-    fields=(
-      "id",
-      "url",
-      "category",
-      "productName",
-      "imgUrl",
-      "price",
-      "initialPrice",
-      "shortDisc",
-      "description",
-      "reviews",
-      "total_rating",
-    )
+     class Meta:
+        model = Product
+        fields = [
+            "id", "url", "category", "productName", "imgUrl", "price", 
+            "initialPrice", "shortDisc", "description", "reviews", 
+            "total_rating", "shortDiscList"  # Include shortDiscList here
+        ]
 
   def get_reviews(self, obj):
     q=Reviews.objects.filter(product_id=obj.pk)
@@ -81,5 +75,12 @@ class ProductSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         Token.objects.create(user=user)
         return user
+  
+  def get_shortDiscList(self, obj):
+        # If shortDisc exists, split it by newline or other delimiters
+        if obj.shortDisc:
+            lines = obj.shortDisc.split('\n')  # Split by newline (use other delimiters as needed)
+            return [line.strip() for line in lines if line.strip()]  # Clean up empty lines
+        return []
   
   

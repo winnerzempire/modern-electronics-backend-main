@@ -22,7 +22,7 @@ class Product(models.Model):
   imgUrl=models.ImageField(upload_to="images/", null=True)
   price=models.DecimalField(max_digits=10, decimal_places=2, default=0)
   initialPrice=models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-  shortDisc=models.CharField(max_length=100, null=True, blank=True)
+  shortDisc = models.TextField(null=True, blank=True)
   description=models.TextField(blank=True, null=True)
   created_at=models.DateTimeField(auto_now_add=True)
   avgRating=models.DecimalField(max_digits=10, null=True, 
