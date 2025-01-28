@@ -6,81 +6,71 @@ import numpy as np
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 
-
-
 class CategorySerializer(serializers.ModelSerializer):
-  admin=UserSerializer(source="user")
-  title=serializers.CharField(validators=[unique_validator])
-  class Meta:
-    model=Category
-    fields=(
-      "id",
-      "admin",
-      "title"
-    )
+    admin = UserSerializer(source="user")  # Linking to the User model
+    title = serializers.CharField(validators=[unique_validator])  # Ensuring unique titles
+    
+    class Meta:
+        model = Category
+        fields = ("id", "admin", "title")
 
-class CategorySerializer(serializers.ModelSerializer):
-  class Meta:
-    model=Category
-    fields=(
-      "id",
-      "title"
-    )
 
 class ReviewSerializer(serializers.ModelSerializer):
-  class Meta:
-    model=Reviews
-    fields=(
-      "id",
-      "userName",
-      "rating",
-      "text",
-      "created_at_formatted",
-      "item_id"
-    )
-  
-  
+    class Meta:
+        model = Reviews
+        fields = (
+            "id",
+            "userName",
+            "rating",
+            "text",
+            "created_at_formatted",
+            "item_id"
+        )
+
+
 class ProductSerializer(serializers.ModelSerializer):
-  category=CategorySerializer(read_only=True)
-  reviews=serializers.SerializerMethodField(read_only=True)
-  url=serializers.HyperlinkedIdentityField(
-    view_name="product-detail",
-    lookup_field="pk"
-  )
-  shortDiscList = serializers.SerializerMethodField() 
-  total_rating=serializers.SerializerMethodField(read_only=True)
-  class Meta:
-     class Meta:
+    category = CategorySerializer(read_only=True)  # Nested Category serializer
+    reviews = serializers.SerializerMethodField(read_only=True)  # Using a method for reviews
+    url = serializers.HyperlinkedIdentityField(view_name="product-detail", lookup_field="pk")
+    shortDiscList = serializers.SerializerMethodField()  # Method to split short descriptions
+    total_rating = serializers.SerializerMethodField(read_only=True)  # Total ratings
+
+    class Meta:
         model = Product
         fields = [
-            "id", "url", "category", "productName", "imgUrl", "price", 
-            "initialPrice", "shortDisc", "description", "reviews", 
-            "total_rating", "shortDiscList"  # Include shortDiscList here
+            "id",
+            "url",
+            "category",
+            "productName",
+            "imgUrl",
+            "price",
+            "initialPrice",
+            "shortDisc",
+            "description",
+            "reviews",
+            "total_rating",
+            "shortDiscList",  # Include shortDiscList here
         ]
+    
+    def get_reviews(self, obj):
+        """Fetch reviews for a product."""
+        reviews = Reviews.objects.filter(product_id=obj.pk)
+        return ReviewSerializer(reviews, many=True, context=self.context).data if reviews.exists() else []
 
-  def get_reviews(self, obj):
-    q=Reviews.objects.filter(product_id=obj.pk)
-    if q is not None:
-      return ReviewSerializer(q, many=True, context=self.context).data
-    return None
-  def get_total_rating(self,obj):
-    curr=Reviews.objects.filter(product_id=obj.id)
-    acc=[]
-    if curr is not None:
-      item=0
-      acc=[i.rating for i in curr if(i.product_id==obj.pk)]
-    return np.sum(acc)
-  
-  def create(self, validated_data):
+    def get_total_rating(self, obj):
+        """Calculate the total rating based on the reviews."""
+        reviews = Reviews.objects.filter(product_id=obj.id)
+        return sum([review.rating for review in reviews]) if reviews.exists() else 0
+
+    def create(self, validated_data):
+        """Custom create method (if needed)"""
         user = User.objects.create_user(**validated_data)
         Token.objects.create(user=user)
         return user
-  
-  def get_shortDiscList(self, obj):
-        # If shortDisc exists, split it by newline or other delimiters
+
+    def get_shortDiscList(self, obj):
+        """Return a list of short descriptions from 'shortDisc'."""
         if obj.shortDisc:
-            lines = obj.shortDisc.split('\n')  # Split by newline (use other delimiters as needed)
-            return [line.strip() for line in lines if line.strip()]  # Clean up empty lines
+            return [line.strip() for line in obj.shortDisc.split('\n') if line.strip()]
         return []
-  
-  
+
