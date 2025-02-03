@@ -19,7 +19,7 @@ class Product(models.Model):
                              related_name="product_category", 
                              on_delete=models.CASCADE)
   productName=models.CharField(max_length=255, default="")
-  imgUrl=models.ImageField(upload_to="images/", null=True)
+  imgUrl=models.ImageField(upload_to="media/", null=True)
   price=models.DecimalField(max_digits=10, decimal_places=2, default=0)
   initialPrice=models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
   shortDisc = models.TextField(null=True, blank=True)
