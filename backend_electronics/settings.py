@@ -125,7 +125,7 @@ CSRF_TRUSTED_ORIGINS = [
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-MEDIA_URL = "/media/media"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media" "media")
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media" )
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
